@@ -5,7 +5,7 @@ import java.sql.Blob;
 public class File {
     private Integer fileId, userId;
     private String filename, contenttype, filesize;
-    private Blob filedata;
+    private byte[] filedata;
 
     public Integer getFileId() {
         return fileId;
@@ -47,11 +47,11 @@ public class File {
         this.filesize = filesize;
     }
 
-    public Blob getFiledata() {
+    public byte[] getFiledata() {
         return filedata;
     }
 
-    public void setFiledata(Blob filedata) {
+    public void setFiledata(byte[] filedata) {
         this.filedata = filedata;
     }
 }
