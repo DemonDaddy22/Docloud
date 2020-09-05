@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
-
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/index.css}">
         <title>Login</title>
     </head>
-    <body class="p-3 mb-2 bg-light text-black">
-        <div class="container justify-content-center w-25 p-3" style="background-color: #eeeeee; margin-top: 5em;">
+    <body class="text-black login-bg">
+        <div class="container login-container p-3" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
             <h1 class="display-5">Login</h1>
             <form action="#" th:action="@{/login}" method="POST">
                 <div id="error-msg" th:if="${param.error}" class="alert alert-danger">
@@ -26,11 +26,11 @@
                     <label for="inputPassword">Password</label>
                     <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-success">Login</button>
             </form>
 
             <div class="form-group" style="margin-top: 0.5em;">
-                <label><a href="/signup">Click here to sign up</a></label>
+                <label><a class="text-success" th:href="@{/signup}">Click here to sign up</a></label>
             </div>
         </div>
     </body>
