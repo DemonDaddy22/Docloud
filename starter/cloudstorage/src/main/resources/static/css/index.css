@@ -1,0 +1,44 @@
+body {
+    min-height: 100vh;
+}
+
+.signup-bg {
+    background: url("https://images.unsplash.com/photo-1532153955177-f59af40d6472?ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.signup-container {
+    margin-top: 2rem;
+    width: 90%;
+    border-radius: 6px;
+    position: relative;
+    background: inherit;
+    overflow: hidden;
+    z-index: 1;
+    color: #fff;
+}
+
+.signup-container:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    box-shadow: inset 0 0 2000px rgba(0, 0, 0, 1.5);
+    filter: blur(5px);
+    margin: -20px;
+    z-index: -1;
+}
+
+@media (min-width: 900px) {
+    .signup-container {
+        width: 50% !important;
+        display: inline-block;
+        float: right;
+        margin-right: 10rem;
+        margin-top: 5rem;
+    }
+}
