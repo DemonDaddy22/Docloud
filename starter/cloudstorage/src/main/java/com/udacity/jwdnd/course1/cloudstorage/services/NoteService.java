@@ -30,7 +30,7 @@ public class NoteService {
         return this.noteMapper.deleteNote(noteId);
     }
 
-    public int editNote(Integer noteId) {
-        return this.noteMapper.updateNote(noteId);
+    public int editNote(Note note) {
+        return this.noteMapper.updateNote(note);
     }
 }

@@ -20,6 +20,6 @@ public interface FileMapper {
     @Delete("DELETE FROM FILES WHERE fileId = #{fileId}")
     public int deleteFile(Integer fileId);
 
-    @Select("SELECT FROM FILES WHERE userId = ${userId} AND filename = #{filename} AND filedata = #{filedata}")
+    @Select("SELECT * FROM FILES WHERE userId = ${userId} AND filename = #{filename} AND filedata = #{filedata}")
     public List<File> getDuplicateFiles(File file);
 }
