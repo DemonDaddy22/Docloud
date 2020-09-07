@@ -63,7 +63,7 @@ public class FileController {
         int rows = this.fileService.addFile(file);
 
         if (rows == 1) model.addAttribute("fileUploadSuccess", true);
-        else model.addAttribute("fileUploadSuccess", false);
+        else model.addAttribute("fileUploadFailure", true);
 
         return "result.html";
     }
@@ -72,7 +72,7 @@ public class FileController {
     public String deleteFile(@PathVariable Integer fileId, Model model) {
         Integer rowsDeleted = this.fileService.deleteFile(fileId);
         if (rowsDeleted == 1) model.addAttribute("fileDeleteSuccess", true);
-        else model.addAttribute("fileDeleteSuccess", false);
+        else model.addAttribute("fileDeleteFailure", true);
 
         return "result.html";
     }

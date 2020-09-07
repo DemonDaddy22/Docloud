@@ -11,11 +11,11 @@
     <body class="p-3 mb-2 bg-light text-black">
         <div class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
 
-            <div if="${fileUploadSuccess}" class="alert alert-success fill-parent">
+            <div th:if="${fileUploadSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>File uploaded successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div th:unless="${fileUploadSuccess}" class="alert alert-danger fill-parent">
+            <div th:if="${fileUploadFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>File upload failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
@@ -23,24 +23,24 @@
                 <h1 class="display-5">Error</h1>
                 <span>File already exists. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div if="${fileDeleteSuccess}" class="alert alert-success fill-parent">
+            <div th:if="${fileDeleteSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>File deleted successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div th:unless="${fileDeleteSuccess}" class="alert alert-danger fill-parent">
+            <div th:if="${fileDeleteFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>File deletion failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
 
-            <div class="alert alert-danger fill-parent">
-                <h1 class="display-5">Error</h1>
-                <span>Your changes were not saved. Click <a>here</a> to continue.</span>
-            </div>
-            <div class="alert alert-danger fill-parent">
-                <h1 class="display-5">Error</h1>
-                <span>Example Error Message</span>
-                <span>Click <a>here</a> to continue.</span>
-            </div>
+<!--            <div class="alert alert-danger fill-parent">-->
+<!--                <h1 class="display-5">Error</h1>-->
+<!--                <span>Your changes were not saved. Click <a>here</a> to continue.</span>-->
+<!--            </div>-->
+<!--            <div class="alert alert-danger fill-parent">-->
+<!--                <h1 class="display-5">Error</h1>-->
+<!--                <span>Example Error Message</span>-->
+<!--                <span>Click <a>here</a> to continue.</span>-->
+<!--            </div>-->
         </div>
     </body>
 </html>
