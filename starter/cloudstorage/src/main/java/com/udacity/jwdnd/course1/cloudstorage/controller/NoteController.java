@@ -22,7 +22,7 @@ public class NoteController {
 
     @PostMapping("/upload")
     public String uploadNote(@ModelAttribute("newNote") Note note, Authentication authentication, Model model) {
-        // same function solves both the purposes of insert and update
+        // same controller method solves both the purposes of insert and update
         if (note.getNoteId() == null) {
             String username = authentication.getName();
             User user = this.userService.getUser(username);
@@ -41,7 +41,7 @@ public class NoteController {
         return "result.html";
     }
 
-    @GetMapping("/notes/delete/{noteId}")
+    @GetMapping("/delete/{noteId}")
     public String deleteNote(@PathVariable Integer noteId, Model model) {
         int rowsDeleted = this.noteService.deleteNote(noteId);
         if (rowsDeleted == 1) model.addAttribute("noteDeleteSuccess", true);
