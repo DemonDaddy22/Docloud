@@ -19,7 +19,7 @@
                 <h1 class="display-5">Error</h1>
                 <span>File upload failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div th:if="${fileAlreadyExists}" class="alert alert-danger fill-parent">
+            <div th:if="${fileExists}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>File already exists. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
