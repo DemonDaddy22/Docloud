@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/index.css}">
+        <link rel = "icon" href ="https://svgsilh.com/svg/159946.svg" type = "image/x-icon">
+        <title>Docloud</title>
+    </head>
+    <body class="landing-body landing-bg">
+        <div class="container landing-container p-3">
+            <h1>Docloud</h1>
+            <h5 class="my-5">Your one stop solution to manage documents, notes and credentials!</h5>
+            <a class="btn btn-lg btn-primary landing-btn mr-3" th:href="@{/signup}">sign up</a>
+            <a class="btn btn-lg btn-success landing-btn" th:href="@{/login}">login</a>
+        </div>
+    </body>
+</html>
