@@ -15,18 +15,22 @@
                 <h1 class="display-5">Success</h1>
                 <span>File uploaded successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${fileUploadFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>File upload failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${fileExists}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>File already exists. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${fileDeleteSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>File deleted successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${fileDeleteFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>File deletion failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
@@ -36,22 +40,27 @@
                 <h1 class="display-5">Success</h1>
                 <span>Note uploaded successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${noteUploadFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>Note upload failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${noteUpdateSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>Note updated successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${noteUpdateFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>Note update failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${noteDeleteSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>Note deleted successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${noteDeleteFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>Note deletion failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
@@ -61,6 +70,7 @@
                 <h1 class="display-5">Success</h1>
                 <span>Credential uploaded successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${credentialUploadFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>Credential upload failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
@@ -69,28 +79,21 @@
                 <h1 class="display-5">Success</h1>
                 <span>Credential updated successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${credentialUpdateFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>Credential update failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${credentialDeleteSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>Credential deleted successfully. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
+
             <div th:if="${credentialDeleteFailure}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
                 <span>Credential deletion failed. Please try again. Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-
-<!--            <div class="alert alert-danger fill-parent">-->
-<!--                <h1 class="display-5">Error</h1>-->
-<!--                <span>Your changes were not saved. Click <a>here</a> to continue.</span>-->
-<!--            </div>-->
-<!--            <div class="alert alert-danger fill-parent">-->
-<!--                <h1 class="display-5">Error</h1>-->
-<!--                <span>Example Error Message</span>-->
-<!--                <span>Click <a>here</a> to continue.</span>-->
-<!--            </div>-->
         </div>
     </body>
 </html>
