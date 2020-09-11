@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class HomePage {
 
@@ -86,6 +88,15 @@ public class HomePage {
         this.logoutButton.click();
     }
 
+    public boolean checkElementPresent(WebDriver driver, String id) {
+        try {
+            driver.findElement(By.id(id));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public void createNewNote(WebDriver driver, String noteTitle, String noteDescription) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -111,5 +122,35 @@ public class HomePage {
         createdNotes.add(wait.until(ExpectedConditions.elementToBeClickable(this.noteDescription)).getText());
 
         return createdNotes;
+    }
+
+    public void editNote(WebDriver driver, String noteTitle, String noteDescription) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.notesTab)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.editNoteButton)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputNotetitle)).sendKeys(noteTitle);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputNoteDescription)).sendKeys(noteDescription);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.noteSubmit)).click();
+    }
+
+    public void deleteNote(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.notesTab)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.deleteNoteButton)).click();
+    }
+
+    public boolean checkNotePresent(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.notesTab)).click();
+
+        return checkElementPresent(driver, "noteTitle") && checkElementPresent(driver, "noteDescription");
     }
 }
