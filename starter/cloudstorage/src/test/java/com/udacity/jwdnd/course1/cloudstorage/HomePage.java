@@ -50,6 +50,9 @@ public class HomePage {
     @FindBy(id = "saveNoteButton")
     private WebElement saveNoteButton;
 
+    @FindBy(ID = "newCredentialButton")
+    private WebElement newCredentialButton;
+
     @FindBy(id = "credential-url")
     private WebElement inputCredentialUrl;
 
@@ -111,7 +114,7 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(this.noteSubmit)).click();
     }
 
-    public List<String> getNotes(WebDriver driver) {
+    public List<String> getNote(WebDriver driver) {
         List<String> createdNotes = new ArrayList<>();
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -152,5 +155,68 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(this.notesTab)).click();
 
         return checkElementPresent(driver, "noteTitle") && checkElementPresent(driver, "noteDescription");
+    }
+
+    public void createNewCredential(WebDriver driver, String credentialUrl, String credentialUsername, String credentialPassword) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialsTab)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.newCredentialButton)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialUrl)).sendKeys(credentialUrl);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialUsername)).sendKeys(credentialUsername);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialPassword)).sendKeys(credentialPassword);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialSubmit)).click();
+    }
+
+    public List<String> getCredential(WebDriver driver) {
+        List<String> createdCredentials = new ArrayList<>();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialsTab)).click();
+
+        createdCredentials.add(wait.until(ExpectedConditions.elementToBeClickable(this.credentialUrl)).getText());
+
+        createdCredentials.add(wait.until(ExpectedConditions.elementToBeClickable(this.credentialUsername)).getText());
+
+        createdCredentials.add(wait.until(ExpectedConditions.elementToBeClickable(this.credentialPassword)).getText());
+
+        return createdCredentials;
+    }
+
+    public void editCredential(WebDriver driver, String credentialUrl, String credentialUsername, String credentialPassword) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialsTab)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.editCredentialButton)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialUrl)).sendKeys(credentialUrl);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialUsername)).sendKeys(credentialUsername);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialPassword)).sendKeys(credentialPassword);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialSubmit)).click();
+    }
+
+    public void deleteCredential(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialsTab)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.deleteCredentialButton)).click();
+    }
+
+    public boolean checkCredentialPresent(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.credentialsTab)).click();
+
+        return  checkElementPresent(driver, "credentialUrl") && checkElementPresent(driver, "credentialUsername") &&  checkElementPresent(driver, "credentialPassword");
     }
 }
