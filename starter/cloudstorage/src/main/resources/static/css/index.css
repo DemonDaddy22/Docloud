@@ -63,10 +63,6 @@
     font-weight: bold;
 }
 
-.credentialPassword {
-    cursor: pointer;
-}
-
 @media (min-width: 900px) {
     .signup-container, .login-container {
         width: 50% !important;
