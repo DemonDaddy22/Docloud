@@ -32,9 +32,6 @@ public class HomePage {
     @FindBy(id = "note-description")
     private WebElement inputNoteDescription;
 
-    @FindBy(id = "noteSubmit")
-    private WebElement noteSubmit;
-
     @FindBy(id = "noteTitle")
     private WebElement noteTitle;
 
@@ -61,9 +58,6 @@ public class HomePage {
 
     @FindBy(id = "credential-username")
     private WebElement inputCredentialPassword;
-
-    @FindBy(id = "credentialSubmit")
-    private WebElement credentialSubmit;
 
     @FindBy(id = "credentialUrl")
     private WebElement credentialUrl;
@@ -113,7 +107,7 @@ public class HomePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(this.inputNoteDescription)).sendKeys(noteDescription);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.noteSubmit)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.saveNoteButton)).click();
     }
 
     public List<String> getNote(WebDriver driver) {
@@ -140,7 +134,7 @@ public class HomePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(this.inputNoteDescription)).sendKeys(noteDescription);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.noteSubmit)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.saveNoteButton)).click();
     }
 
     public void deleteNote(WebDriver driver) {
@@ -172,7 +166,7 @@ public class HomePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialPassword)).sendKeys(credentialPassword);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.credentialSubmit)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.newCredentialButton)).click();
     }
 
     public List<String> getCredential(WebDriver driver) {
@@ -203,7 +197,7 @@ public class HomePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialPassword)).sendKeys(credentialPassword);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.credentialSubmit)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.newCredentialButton)).click();
     }
 
     public void deleteCredential(WebDriver driver) {

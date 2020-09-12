@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
+import java.util.List;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CloudStorageApplicationTests {
 
@@ -111,6 +113,33 @@ class CloudStorageApplicationTests {
 		// check if home page cannot be accessed after logout
 		this.driver.get(this.baseUrl + "/home");
 		Assertions.assertEquals("Login", this.driver.getTitle());
+	}
+
+	@Test
+	@Order(4)
+	public void testCreateNote() {
+		String notetitle = "Get groceries";
+		String notedescription = "Buy fruits, milk and bread.";
+
+		this.driver.get(this.baseUrl + "/signup");
+		SignupPage signupPage = new SignupPage(this.driver);
+		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/login");
+		LoginPage loginPage = new LoginPage(this.driver);
+
+		loginPage.loginUser(this.driver, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/home");
+		HomePage homePage = new HomePage(this.driver);
+		homePage.createNewNote(this.driver, notetitle, notedescription);
+
+		this.driver.get(this.baseUrl + "/home");
+
+		List<String> createdNote =  homePage.getNote(this.driver);
+
+		Assertions.assertEquals(notetitle, createdNote.get(0));
+		Assertions.assertEquals(notedescription, createdNote.get(1));
 	}
 
 }
