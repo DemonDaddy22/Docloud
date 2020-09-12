@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
 
@@ -20,9 +22,13 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void loginUser(String username, String password) {
-        this.username.sendKeys(username);
-        this.password.sendKeys(password);
-        this.submit.click();
+    public void loginUser(WebDriver driver, String username, String password) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.username)).sendKeys(username);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.password)).sendKeys(password);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.submit)).click();
     }
 }

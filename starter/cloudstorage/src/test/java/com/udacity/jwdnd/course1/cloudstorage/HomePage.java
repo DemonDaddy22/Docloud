@@ -87,8 +87,10 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void logout() {
-        this.logoutButton.click();
+    public void logout(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        wait.until(ExpectedConditions.elementToBeClickable(this.logoutButton)).click();
     }
 
     public boolean checkElementPresent(WebDriver driver, String id) {
