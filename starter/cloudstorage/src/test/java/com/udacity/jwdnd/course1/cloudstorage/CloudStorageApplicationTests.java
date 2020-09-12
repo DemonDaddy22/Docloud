@@ -15,6 +15,10 @@ class CloudStorageApplicationTests {
 
 	private WebDriver driver;
 
+	private String baseUrl;
+
+	private String firstname = "Rohan", lastname = "Gupta", username = "DemonDaddy22", password = "pass6789";
+
 	@BeforeAll
 	static void beforeAll() {
 		WebDriverManager.chromedriver().setup();
@@ -23,6 +27,7 @@ class CloudStorageApplicationTests {
 	@BeforeEach
 	public void beforeEach() {
 		this.driver = new ChromeDriver();
+		this.driver.get(baseUrl = "http://localhost:" + this.port);
 	}
 
 	@AfterEach
@@ -33,9 +38,50 @@ class CloudStorageApplicationTests {
 	}
 
 	@Test
-	public void getLoginPage() {
-		driver.get("http://localhost:" + this.port + "/login");
-		Assertions.assertEquals("Login", driver.getTitle());
+	@Order(1)
+	public void unauthorisedAccess() {
+		// anyone can access these
+		this.driver.get(this.baseUrl + "/");
+		Assertions.assertEquals("Docloud", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/login");
+		Assertions.assertEquals("Login", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/signup");
+		Assertions.assertEquals("Signup", this.driver.getTitle());
+
+		// accessible only by authenticated users
+		this.driver.get(this.baseUrl + "/home");
+		Assertions.assertEquals("Login", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/files/upload");
+		Assertions.assertEquals("Login", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/notes/upload");
+		Assertions.assertEquals("Login", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/credentials/upload");
+		Assertions.assertEquals("Login", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/result");
+		Assertions.assertEquals("Login", this.driver.getTitle());
+	}
+
+	@Test
+	@Order(2)
+	public void testLandingPage() {
+		this.driver.get(this.baseUrl + "/");
+		Assertions.assertEquals("Docloud", this.driver.getTitle());
+
+		LandingPage landingPage = new LandingPage(this.driver);
+
+		landingPage.gotoSignup();
+		Assertions.assertEquals("Signup", this.driver.getTitle());
+
+		this.driver.get(this.baseUrl + "/");
+
+		landingPage.gotoLogin();
+		Assertions.assertEquals("Login", this.driver.getTitle());
 	}
 
 }
