@@ -118,8 +118,8 @@ class CloudStorageApplicationTests {
 	@Test
 	@Order(4)
 	public void testCreateNote() {
-		String notetitle = "Get groceries";
-		String notedescription = "Buy fruits, milk and bread.";
+		String noteTitle = "Get groceries";
+		String noteDescription = "Buy fruits, milk and bread.";
 
 		this.driver.get(this.baseUrl + "/signup");
 		SignupPage signupPage = new SignupPage(this.driver);
@@ -132,14 +132,46 @@ class CloudStorageApplicationTests {
 
 		this.driver.get(this.baseUrl + "/home");
 		HomePage homePage = new HomePage(this.driver);
-		homePage.createNewNote(this.driver, notetitle, notedescription);
+		homePage.createNewNote(this.driver, noteTitle, noteDescription);
 
 		this.driver.get(this.baseUrl + "/home");
 
 		List<String> createdNote =  homePage.getNote(this.driver);
 
-		Assertions.assertEquals(notetitle, createdNote.get(0));
-		Assertions.assertEquals(notedescription, createdNote.get(1));
+		Assertions.assertEquals(noteTitle, createdNote.get(0));
+		Assertions.assertEquals(noteDescription, createdNote.get(1));
+	}
+
+	@Test
+	@Order(5)
+	public void testEditNote() {
+		String noteTitle = "Get groceries";
+		String noteDescription = "Buy fruits, milk and bread";
+		String editedNoteTitle = " and water plants";
+		String editedNoteDescription = ", and water plants twice each day.";
+
+		this.driver.get(this.baseUrl + "/signup");
+		SignupPage signupPage = new SignupPage(this.driver);
+		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/login");
+		LoginPage loginPage = new LoginPage(this.driver);
+
+		loginPage.loginUser(this.driver, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/home");
+		HomePage homePage = new HomePage(this.driver);
+		homePage.createNewNote(this.driver, noteTitle, noteDescription);
+
+		this.driver.get(this.baseUrl + "/home");
+		homePage.editNote(this.driver, editedNoteTitle, editedNoteDescription);
+
+		this.driver.get(this.baseUrl + "/home");
+
+		List<String> editedNote =  homePage.getNote(this.driver);
+
+		Assertions.assertEquals(noteTitle + editedNoteTitle, editedNote.get(0));
+		Assertions.assertEquals(noteDescription + editedNoteDescription, editedNote.get(1));
 	}
 
 }
