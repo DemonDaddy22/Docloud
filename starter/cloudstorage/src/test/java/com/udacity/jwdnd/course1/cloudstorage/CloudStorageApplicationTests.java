@@ -174,4 +174,30 @@ class CloudStorageApplicationTests {
 		Assertions.assertEquals(noteDescription + editedNoteDescription, editedNote.get(1));
 	}
 
+	@Test
+	@Order(6)
+	public void testDeleteNote() {
+		String noteTitle = "Get groceries";
+		String noteDescription = "Buy fruits, milk and bread";
+
+		this.driver.get(this.baseUrl + "/signup");
+		SignupPage signupPage = new SignupPage(this.driver);
+		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/login");
+		LoginPage loginPage = new LoginPage(this.driver);
+
+		loginPage.loginUser(this.driver, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/home");
+		HomePage homePage = new HomePage(this.driver);
+		homePage.createNewNote(this.driver, noteTitle, noteDescription);
+
+		this.driver.get(this.baseUrl + "/home");
+		homePage.deleteNote(this.driver);
+
+		this.driver.get(this.baseUrl + "/home");
+		Assertions.assertFalse(homePage.checkNotePresent(this.driver));
+	}
+
 }

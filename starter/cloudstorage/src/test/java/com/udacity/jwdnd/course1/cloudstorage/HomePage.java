@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+import org.openqa.selenium.NoSuchElementException;
 
 public class HomePage {
 
@@ -87,9 +87,9 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(this.logoutButton)).click();
     }
 
-    public boolean checkElementPresent(WebDriver driver, String id) {
+    public boolean checkElementPresent(WebDriver driver, String identifier) {
         try {
-            driver.findElement(By.id(id));
+            driver.findElement(By.id(identifier));
             return true;
         } catch (NoSuchElementException e) {
             return false;
