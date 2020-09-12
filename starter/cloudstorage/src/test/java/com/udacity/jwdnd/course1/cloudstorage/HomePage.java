@@ -50,7 +50,7 @@ public class HomePage {
     @FindBy(id = "saveNoteButton")
     private WebElement saveNoteButton;
 
-    @FindBy(ID = "newCredentialButton")
+    @FindBy(id = "newCredentialButton")
     private WebElement newCredentialButton;
 
     @FindBy(id = "credential-url")

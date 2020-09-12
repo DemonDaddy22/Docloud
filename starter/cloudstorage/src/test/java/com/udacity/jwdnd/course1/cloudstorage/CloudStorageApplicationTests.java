@@ -48,7 +48,7 @@ class CloudStorageApplicationTests {
 		Assertions.assertEquals("Login", this.driver.getTitle());
 
 		this.driver.get(this.baseUrl + "/signup");
-		Assertions.assertEquals("Signup", this.driver.getTitle());
+		Assertions.assertEquals("Sign Up", this.driver.getTitle());
 
 		// accessible only by authenticated users
 		this.driver.get(this.baseUrl + "/home");
@@ -69,19 +69,22 @@ class CloudStorageApplicationTests {
 
 	@Test
 	@Order(2)
-	public void testLandingPage() {
+	public void testLandingPage() throws InterruptedException {
 		this.driver.get(this.baseUrl + "/");
 		Assertions.assertEquals("Docloud", this.driver.getTitle());
+		// Thread.sleep(1500);
 
 		LandingPage landingPage = new LandingPage(this.driver);
 
-		landingPage.gotoSignup();
-		Assertions.assertEquals("Signup", this.driver.getTitle());
+		landingPage.gotoSignup(this.driver);
+		Assertions.assertEquals("Sign Up", this.driver.getTitle());
+		// Thread.sleep(1500);
 
 		this.driver.get(this.baseUrl + "/");
 
-		landingPage.gotoLogin();
+		landingPage.gotoLogin(this.driver);
 		Assertions.assertEquals("Login", this.driver.getTitle());
+		// Thread.sleep(1500);
 	}
 
 }
