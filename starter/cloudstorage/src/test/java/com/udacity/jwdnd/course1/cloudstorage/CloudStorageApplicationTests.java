@@ -10,6 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CloudStorageApplicationTests {
 
 	@LocalServerPort
@@ -35,7 +36,8 @@ class CloudStorageApplicationTests {
 	@AfterEach
 	public void afterEach() {
 		if (this.driver != null) {
-			driver.quit();
+			this.driver.quit();
+			this.driver = null;
 		}
 	}
 
@@ -121,10 +123,6 @@ class CloudStorageApplicationTests {
 		String noteTitle = "Get groceries";
 		String noteDescription = "Buy fruits, milk and bread.";
 
-		this.driver.get(this.baseUrl + "/signup");
-		SignupPage signupPage = new SignupPage(this.driver);
-		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
-
 		this.driver.get(this.baseUrl + "/login");
 		LoginPage loginPage = new LoginPage(this.driver);
 
@@ -146,13 +144,9 @@ class CloudStorageApplicationTests {
 	@Order(5)
 	public void testEditNote() {
 		String noteTitle = "Get groceries";
-		String noteDescription = "Buy fruits, milk and bread";
+		String noteDescription = "Buy fruits, milk and bread.";
 		String editedNoteTitle = " and water plants";
 		String editedNoteDescription = ", and water plants twice each day.";
-
-		this.driver.get(this.baseUrl + "/signup");
-		SignupPage signupPage = new SignupPage(this.driver);
-		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
 
 		this.driver.get(this.baseUrl + "/login");
 		LoginPage loginPage = new LoginPage(this.driver);
@@ -161,9 +155,6 @@ class CloudStorageApplicationTests {
 
 		this.driver.get(this.baseUrl + "/home");
 		HomePage homePage = new HomePage(this.driver);
-		homePage.createNewNote(this.driver, noteTitle, noteDescription);
-
-		this.driver.get(this.baseUrl + "/home");
 		homePage.editNote(this.driver, editedNoteTitle, editedNoteDescription);
 
 		this.driver.get(this.baseUrl + "/home");
@@ -180,10 +171,6 @@ class CloudStorageApplicationTests {
 		String noteTitle = "Get groceries";
 		String noteDescription = "Buy fruits, milk and bread";
 
-		this.driver.get(this.baseUrl + "/signup");
-		SignupPage signupPage = new SignupPage(this.driver);
-		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
-
 		this.driver.get(this.baseUrl + "/login");
 		LoginPage loginPage = new LoginPage(this.driver);
 
@@ -191,9 +178,6 @@ class CloudStorageApplicationTests {
 
 		this.driver.get(this.baseUrl + "/home");
 		HomePage homePage = new HomePage(this.driver);
-		homePage.createNewNote(this.driver, noteTitle, noteDescription);
-
-		this.driver.get(this.baseUrl + "/home");
 		homePage.deleteNote(this.driver);
 
 		this.driver.get(this.baseUrl + "/home");
@@ -206,10 +190,6 @@ class CloudStorageApplicationTests {
 		String url = "www.xyz.com";
 		String username = "user123";
 		String password = "password123";
-
-		this.driver.get(this.baseUrl + "/signup");
-		SignupPage signupPage = new SignupPage(this.driver);
-		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
 
 		this.driver.get(this.baseUrl + "/login");
 		LoginPage loginPage = new LoginPage(this.driver);
@@ -236,10 +216,6 @@ class CloudStorageApplicationTests {
 		String username = "user123", editedUsername = "45";
 		String password = "password123", editedPassword = "45";
 
-		this.driver.get(this.baseUrl + "/signup");
-		SignupPage signupPage = new SignupPage(this.driver);
-		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
-
 		this.driver.get(this.baseUrl + "/login");
 		LoginPage loginPage = new LoginPage(this.driver);
 
@@ -247,9 +223,6 @@ class CloudStorageApplicationTests {
 
 		this.driver.get(this.baseUrl + "/home");
 		HomePage homePage = new HomePage(this.driver);
-		homePage.createNewCredential(this.driver, url, username, password);
-
-		this.driver.get(this.baseUrl + "/home");
 		homePage.editCredential(this.driver, editedUrl, editedUsername, editedPassword);
 
 		this.driver.get(this.baseUrl + "/home");
@@ -264,14 +237,6 @@ class CloudStorageApplicationTests {
 	@Test
 	@Order(9)
 	public void testDeleteCredential() {
-		String url = "www.xyz.com";
-		String username = "user123";
-		String password = "password123";
-
-		this.driver.get(this.baseUrl + "/signup");
-		SignupPage signupPage = new SignupPage(this.driver);
-		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
-
 		this.driver.get(this.baseUrl + "/login");
 		LoginPage loginPage = new LoginPage(this.driver);
 
@@ -279,9 +244,6 @@ class CloudStorageApplicationTests {
 
 		this.driver.get(this.baseUrl + "/home");
 		HomePage homePage = new HomePage(this.driver);
-		homePage.createNewCredential(this.driver, url, username, password);
-
-		this.driver.get(this.baseUrl + "/home");
 		homePage.deleteCredential(this.driver);
 
 		this.driver.get(this.baseUrl + "/home");
