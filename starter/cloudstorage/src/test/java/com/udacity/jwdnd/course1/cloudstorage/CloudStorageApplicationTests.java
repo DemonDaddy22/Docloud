@@ -229,4 +229,36 @@ class CloudStorageApplicationTests {
 		Assertions.assertNotEquals(password, createdCredential.get(2));
 	}
 
+	@Test
+	@Order(8)
+	public void testEditCredential() {
+		String url = "www.xyz.com", editedUrl = "/home";
+		String username = "user123", editedUsername = "45";
+		String password = "password123", editedPassword = "45";
+
+		this.driver.get(this.baseUrl + "/signup");
+		SignupPage signupPage = new SignupPage(this.driver);
+		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/login");
+		LoginPage loginPage = new LoginPage(this.driver);
+
+		loginPage.loginUser(this.driver, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/home");
+		HomePage homePage = new HomePage(this.driver);
+		homePage.createNewCredential(this.driver, url, username, password);
+
+		this.driver.get(this.baseUrl + "/home");
+		homePage.editCredential(this.driver, editedUrl, editedUsername, editedPassword);
+
+		this.driver.get(this.baseUrl + "/home");
+
+		List<String> editedCreatedCredential = homePage.getCredential(this.driver);
+
+		Assertions.assertEquals(url + editedUrl, editedCreatedCredential.get(0));
+		Assertions.assertEquals(username + editedUsername, editedCreatedCredential.get(1));
+		Assertions.assertNotEquals(password + editedPassword, editedCreatedCredential.get(2));
+	}
+
 }
