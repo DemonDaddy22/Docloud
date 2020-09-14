@@ -46,6 +46,17 @@ public class CredentialService {
     }
 
     public int editCredential(Credential credential) {
+        SecureRandom random = new SecureRandom();
+        byte[] key = new byte[16];
+        random.nextBytes(key);
+
+        String password = credential.getPassword();
+        String encodedKey = Base64.getEncoder().encodeToString(key);
+        String encryptedPassword = this.encryptionService.encryptValue(password, encodedKey);
+
+        credential.setPassword(encryptedPassword);
+        credential.setKey(encodedKey);
+
         return this.credentialMapper.updateCredential(credential);
     }
 }
