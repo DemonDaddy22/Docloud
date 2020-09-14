@@ -200,4 +200,33 @@ class CloudStorageApplicationTests {
 		Assertions.assertFalse(homePage.checkNotePresent(this.driver));
 	}
 
+	@Test
+	@Order(7)
+	public void testCreateCredential() {
+		String url = "www.xyz.com";
+		String username = "user123";
+		String password = "password123";
+
+		this.driver.get(this.baseUrl + "/signup");
+		SignupPage signupPage = new SignupPage(this.driver);
+		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/login");
+		LoginPage loginPage = new LoginPage(this.driver);
+
+		loginPage.loginUser(this.driver, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/home");
+		HomePage homePage = new HomePage(this.driver);
+		homePage.createNewCredential(this.driver, url, username, password);
+
+		this.driver.get(this.baseUrl + "/home");
+
+		List<String> createdCredential = homePage.getCredential(this.driver);
+
+		Assertions.assertEquals(url, createdCredential.get(0));
+		Assertions.assertEquals(username, createdCredential.get(1));
+		Assertions.assertNotEquals(password, createdCredential.get(2));
+	}
+
 }

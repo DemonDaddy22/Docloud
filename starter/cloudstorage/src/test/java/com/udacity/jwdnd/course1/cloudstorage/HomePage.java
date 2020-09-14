@@ -56,7 +56,7 @@ public class HomePage {
     @FindBy(id = "credential-username")
     private WebElement inputCredentialUsername;
 
-    @FindBy(id = "credential-username")
+    @FindBy(id = "credential-password")
     private WebElement inputCredentialPassword;
 
     @FindBy(id = "credentialUrl")
@@ -166,7 +166,7 @@ public class HomePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(this.inputCredentialPassword)).sendKeys(credentialPassword);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.newCredentialButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.saveCredentialButton)).click();
     }
 
     public List<String> getCredential(WebDriver driver) {
