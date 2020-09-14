@@ -261,4 +261,31 @@ class CloudStorageApplicationTests {
 		Assertions.assertNotEquals(password + editedPassword, editedCreatedCredential.get(2));
 	}
 
+	@Test
+	@Order(9)
+	public void testDeleteCredential() {
+		String url = "www.xyz.com";
+		String username = "user123";
+		String password = "password123";
+
+		this.driver.get(this.baseUrl + "/signup");
+		SignupPage signupPage = new SignupPage(this.driver);
+		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/login");
+		LoginPage loginPage = new LoginPage(this.driver);
+
+		loginPage.loginUser(this.driver, this.username, this.password);
+
+		this.driver.get(this.baseUrl + "/home");
+		HomePage homePage = new HomePage(this.driver);
+		homePage.createNewCredential(this.driver, url, username, password);
+
+		this.driver.get(this.baseUrl + "/home");
+		homePage.deleteCredential(this.driver);
+
+		this.driver.get(this.baseUrl + "/home");
+		Assertions.assertFalse(homePage.checkCredentialPresent(this.driver));
+	}
+
 }

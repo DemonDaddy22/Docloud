@@ -213,6 +213,6 @@ public class HomePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(this.credentialsTab)).click();
 
-        return  checkElementPresent(driver, "credentialUrl") && checkElementPresent(driver, "credentialUsername") &&  checkElementPresent(driver, "credentialPassword");
+        return checkElementPresent(driver, "credentialUrl") && checkElementPresent(driver, "credentialUsername") && checkElementPresent(driver, "credentialPassword");
     }
 }
