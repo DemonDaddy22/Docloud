@@ -94,11 +94,10 @@ class CloudStorageApplicationTests {
 	@Test
 	@Order(3)
 	public void testAuthentication() {
-		// check if user is redirected to login page on successful signup
 		this.driver.get(this.baseUrl + "/signup");
 		SignupPage signupPage = new SignupPage(this.driver);
 		signupPage.registerUser(this.driver, this.firstname, this.lastname, this.username, this.password);
-		Assertions.assertEquals("Login", this.driver.getTitle());
+		Assertions.assertEquals("Sign Up", this.driver.getTitle());
 
 		// check if user is redirected to home page on successful login
 		this.driver.get(this.baseUrl + "/login");

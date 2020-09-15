@@ -41,7 +41,7 @@ public class SignupController {
                 return "signup";
             } else {
                 model.addAttribute("signupSuccess", true);
-                return "redirect:/login";
+                return "signup";
             }
         }
 

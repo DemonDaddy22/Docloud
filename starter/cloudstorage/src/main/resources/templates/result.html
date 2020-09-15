@@ -11,6 +11,11 @@
     <body class="p-3 mb-2 bg-light text-black">
         <div class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
 
+            <div th:if="${emptyFileUpload}" class="alert alert-danger fill-parent">
+                <h1 class="display-5">Error</h1>
+                <span>Please select a file to upload. Click <a th:href="@{/home}">here</a> to continue.</span>
+            </div>
+
             <div th:if="${fileUploadSuccess}" class="alert alert-success fill-parent">
                 <h1 class="display-5">Success</h1>
                 <span>File uploaded successfully. Click <a th:href="@{/home}">here</a> to continue.</span>

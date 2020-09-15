@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/files")
@@ -39,6 +41,18 @@ public class FileController {
 
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("fileUpload") MultipartFile multipartFile, Authentication authentication, Model model) {
+        System.out.println(multipartFile.getOriginalFilename());
+        try {
+            if (Objects.requireNonNull(multipartFile.getOriginalFilename()).isEmpty() && multipartFile.getBytes().length == 0) {
+                model.addAttribute("emptyFileUpload", true);
+                return "result.html";
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while uploading file");
+        }
+
+        System.out.println(multipartFile.getOriginalFilename());
+
         String username = authentication.getName();
         User user = this.userService.getUser(username);
         Integer userId = user.getUserId();
